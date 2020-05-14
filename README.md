@@ -10,4 +10,11 @@ If we move a file to Downloads directory, first analyse the file and determine t
 
     Images  Videos  Audios  Documents   Others
 
+# Installation instructions
+
+1.  Python3 must be installed in your system.
+2.  watchdog module must be installed. ( pip3 install watchdog )
+3.  change directory to this project folder.
+4.  Type cmd: python3 DownloadManager.py
+
 Development is not complete. You have to change the folder_to_track value to your Downloads directory.
