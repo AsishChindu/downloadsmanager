@@ -13,10 +13,27 @@ class MyHandler(FileSystemEventHandler):
             
             if not os.path.isdir(path):
 
-                extension = filename[filename.rindex(".")+1:]
-                path = os.path.join(folder_to_track, extension)
-                isdir = os.path.isdir(path)
+                imagesExt = ["jpeg","jpg","png","svg"]
+                documentsExt = ["pdf","doc","docx","xls","xlsx","ppt","pptx","txt","ods"]
+                audiosExt = ["mp3","wav","wma","aac","flac"]
+                videosExt = ["mkv","mp4","webm","mpeg","vob","avi","mov"]
 
+                extension = filename[filename.rindex(".")+1:].lower()
+
+                if imagesExt.count(extension):
+                    directory = "Images"
+                elif videosExt.count(extension):
+                    directory = "Videos"
+                elif audiosExt.count(extension):
+                    directory = "Audios"
+                elif documentsExt.count(extension):
+                    directory = "Documents"
+                else:
+                    directory = "Others"
+
+                path = os.path.join(folder_to_track, directory)
+
+                isdir = os.path.isdir(path)
                 if not isdir:
                     os.mkdir(path)
 
