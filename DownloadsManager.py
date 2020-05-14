@@ -20,28 +20,29 @@ class MyHandler(FileSystemEventHandler):
 
                 extension = filename[filename.rindex(".")+1:].lower()
 
-                if imagesExt.count(extension):
-                    directory = "Images"
-                elif videosExt.count(extension):
-                    directory = "Videos"
-                elif audiosExt.count(extension):
-                    directory = "Audios"
-                elif documentsExt.count(extension):
-                    directory = "Documents"
-                else:
-                    directory = "Others"
+                if extension != "crdownload":
+                    if imagesExt.count(extension):
+                        directory = "Images"
+                    elif videosExt.count(extension):
+                        directory = "Videos"
+                    elif audiosExt.count(extension):
+                        directory = "Audios"
+                    elif documentsExt.count(extension):
+                        directory = "Documents"
+                    else:
+                        directory = "Others"
 
-                path = os.path.join(folder_to_track, directory)
+                    path = os.path.join(folder_to_track, directory)
 
-                isdir = os.path.isdir(path)
-                if not isdir:
-                    os.mkdir(path)
+                    isdir = os.path.isdir(path)
+                    if not isdir:
+                        os.mkdir(path)
 
-                src = folder_to_track + "/" + filename
-                new_destination = path + "/" + filename
-                os.rename(src, new_destination)
+                    src = folder_to_track + "/" + filename
+                    new_destination = path + "/" + filename
+                    os.rename(src, new_destination)
 
-folder_to_track = "/home/asish/Music/Test"
+folder_to_track = "/home/asish/Downloads"
 event_handler = MyHandler()
 observer = Observer()
 observer.schedule(event_handler,folder_to_track,recursive = True)
